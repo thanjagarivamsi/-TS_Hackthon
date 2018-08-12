@@ -1,0 +1,394 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 CourierNewPSMT;\f2\fswiss\fcharset0 ArialMT;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red246\green246\blue239;
+\red224\green214\blue75;\red244\green0\blue63;\red88\green209\blue235;\red10\green86\blue216;\red157\green101\blue255;
+\red255\green255\blue255;\red26\green26\blue26;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;\cssrgb\c97255\c97255\c94902;
+\cssrgb\c90196\c85882\c36471;\cssrgb\c97647\c14902\c31373;\cssrgb\c40000\c85098\c93725;\cssrgb\c0\c43529\c87843;\cssrgb\c68235\c50588\c100000;
+\cssrgb\c100000\c100000\c100000;\cssrgb\c13333\c13333\c13333;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh17520\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf0 \
+Sample Codes for APP \
+\
+\
+//Requesting API call for dealers crop information
+\fs72 \
+
+\fs24 \
+\
+ val textView = findViewById<TextView>(R.id.text)\
+// ...\
+\
+// Instantiate the RequestQueue.\
+val queue = Volley.newRequestQueue(this)\
+val url = "http://www.localhost/AgroApi/v1/Api.php?apicall=cropname+price"\
+\
+// Request a string response from the provided URL.\
+val stringRequest = StringRequest(Request.Method.GET, url,\
+        Response.Listener<String> \{ \
+response ->textView.text = "Response is: $\{response.substring(0, 500)\}"\
+        \},\
+        Response.ErrorListener \{ textView.text = "That didn't work!" \})\
+\
+// Add the request to the RequestQueue.\
+queue.add(stringRequest)\
+\
+\
+\
+
+\fs48  Code for Backend connection of database\
+\cf2 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+$host="localhost";\
+$user="root";\
+$password="";\
+$db="demo";\
+\'a0\
+\pard\pardeftab720\partightenfactor0
+\cf2 mysql_connect($host,$user,$password);\
+mysql_select_db($db);\
+\'a0\
+\pard\pardeftab720\partightenfactor0
+\cf2 if(isset($_POST['username']))\{\
+\pard\pardeftab720\partightenfactor0
+\cf2 \'a0\'a0\'a0\'a0\
+\'a0\'a0\'a0\'a0$uname=$_POST['username'];\
+\'a0\'a0\'a0\'a0$password=$_POST['password'];\
+\'a0\'a0\'a0\'a0\
+\'a0\'a0\'a0\'a0$sql="select * from loginform where user='".$uname."'AND Pass='".$password."' limit 1";\
+\'a0\'a0\'a0\'a0\
+\'a0\'a0\'a0\'a0$result=mysql_query($sql);\
+\'a0\'a0\'a0\'a0\
+\'a0\'a0\'a0\'a0if(mysql_num_rows($result)==1)\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0echo " You Have Successfully Logged in";\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0exit();\
+\'a0\'a0\'a0\'a0\}\
+\'a0\'a0\'a0\'a0else\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0echo " You Have Entered Incorrect Password";\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0exit();\
+\'a0\'a0\'a0\'a0\}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\
+\}\
+?>
+\f0\fs48 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+\
+\
+//Sample code for Dealers Login Page \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs28 \cf2 \cb10 \expnd0\expndtw0\kerning0
+<!DOCTYPE html>\
+<html>\
+    \
+    <head>\
+        <title>\
+            startScreen\
+        </title>\
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">\
+        <meta name="format-detection" content="telephone=no">\
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">\
+        <meta name="apple-mobile-web-app-capable" content="yes">\
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">\
+        <meta name="msapplication-tap-highlight" content="no">\
+        <!-- Enable all requests, inline styles, and eval() -->\
+        <meta http-equiv="Content-Security-Policy" content="default-src * gap://ready data:; style-src 'self' 'unsafe-inline' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *">\
+        <link href="../css/theme/jqm/jqm.css" rel="stylesheet" />\
+        <link href="../css/theme/material-design/material-design.css" rel="stylesheet" />\
+        <link href="../libs/jquerymobile/1.4.5/jquery.mobile.structure-1.4.5.css" rel="stylesheet"\
+        />\
+        <link type="text/css" rel="stylesheet" href="../css/CSS1.css" />\
+        <link type="text/css" rel="stylesheet" href="../css/bootStrap.css" />\
+        <link type="text/css" rel="stylesheet" href="../css/BootStra.css" />\
+        <script type="text/javascript" src="../libs/underscore/underscore.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/store/json2.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/jquery/jquery-2.1.1.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/jquery/jquery-ajaxTransport.js">\
+        </script>\
+        <script type="text/javascript">\
+                    $(document).bind("mobileinit", function()\
+            \{\
+                if (navigator.userAgent.toLowerCase().indexOf("android") != -1)\
+                \{\
+                    $.mobile.defaultPageTransition = 'none';\
+                    $.mobile.defaultDialogTransition = 'none';\
+                \}\
+                else if (navigator.userAgent.toLowerCase().indexOf("msie") != -1)\
+                \{\
+                    $.mobile.allowCrossDomainPages = true;\
+                    $.support.cors = true;\
+                \}\
+                else if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g))\
+                \{\
+                    $.mobile.hashListeningEnabled = false;\
+                \}\
+            \});\
+        </script>\
+        <script type="text/javascript" src="../libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/apperyio/mobilebase.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/event/customEventHandler.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/sha1.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/oauth.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/contexts.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/jquery.xml2json.min.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/ms_sdk_bundle/client-sdk.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/appery.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/component-manager.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/mapping-impl.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/entity-api.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/login.js">\
+        </script>\
+        <script type="text/javascript" src="../libs/base/storage-api.js">\
+        </script>\
+        <script type="text/javascript" src="../get_target_platform.js">\
+        </script>\
+        <script type="text/javascript" src="../cordova.js">\
+        </script>\
+        <link href="../libs/apperyio/mobilebase.css" rel="stylesheet" type="text/css" />\
+        <script type="text/javascript" src="../js/services/model.js">\
+        </script>\
+        <script type="text/javascript" src="../js/JavaScript1.js">\
+        </script>\
+        <script type="text/javascript" src="../js/JavaScript2.js">\
+        </script>\
+        <script type="text/javascript" src="../js/services/service.js">\
+        </script>\
+    </head>\
+    \
+    <body>\
+        <script language="JavaScript" type="text/javascript">\
+                \
+        </script>\
+        <div data-role="page" style="min-height:480px;" dsid="startScreen" id="startScreen"\
+        class="type-interior" data-theme="b">\
+            <!-- mobileheader -->\
+            <div data-role="header" data-position="fixed" data-add-back-btn="false" data-back-btn-text="Back"\
+            data-theme="d" name="mo\cb2 bileheader" \cb10 id="startScreen_mobileheader" class="startScreen_mobileheader">\
+                <h1 dsid="mobileheader">\
+                    Login\
+                </h1>\
+            </div>\
+            <!-- mobilecontainer -->\
+            <div data-role="content" id="startScreen_mobilecontainer" name="mobilecontainer"\
+            class="startScreen_mobilecontainer ui-content" dsid="mobilecontainer" data-theme="e">\
+                <link href="startScreen.css" rel="stylesheet" type="text/css" />\
+                <script type="text/javascript" src="startScreen.js">\
+                </script>\
+                <!-- mobiletextinput_30 -->\
+                <div data-role="fieldcontain" class="startScreen_mobiletextinput_30 ">\
+                    <input type="text" name="mobiletextinput_30" dsid="mobiletextinput_30" value=""\
+                    placeholder="Username" id="startScreen_mobiletextinput_30" tabindex="11" multiple\
+                    data-theme="e" class="startScreen_mobiletextinput_30" />\
+                </div>\
+                <!-- mobiletextinput_31 -->\
+                <div data-role="fieldcontain" class="startScreen_mobiletextinput_31 ">\
+                    <input type="password" name="mobiletextinput_31" dsid="mobiletextinput_31" value=""\
+                    placeholder="Password" id="startScreen_mobiletextinput_31" tabindex="12" multiple\
+                    data-theme="e" class="startScreen_mobiletextinput_31" />\
+                </div>\
+                <!-- mobilebutton_32 --><!--\
+                --><a data-role="button" name="mobilebutton_32" dsid="mobilebutton_32" class="btn  startScreen_mobilebutton_32"\
+                id="startScreen_mobilebutton_32" data-corners="true" data-icon="none" data-iconpos='nowhere'\
+                x-apple-data-detectors="false" data-mini="false" data-theme="a" tabindex="13">\
+                Login\
+                </a><!--\
+                --><!-- mobilebutton_33 --><!--\
+                --><a data-role="button" name="mobilebutton_33" dsid="mobilebutton_33" class="btn  startScreen_mobilebutton_33"\
+                id="startScreen_mobilebutton_33" data-corners="true" data-icon="none" data-iconpos='nowhere'\
+                x-apple-data-detectors="false" data-mini="false" data-theme="e" tabindex="14">\
+                Register\
+                </a>\
+            </div>\
+            <!-- mobilefooter -->\
+            <div data-role="footer" data-position="fixed" class="startScreen_mobilefooter" name="mobilefooter"\
+            dsid="mobilefooter" id="startScreen_mobilefooter" data-theme="b">\
+            </div>\
+        </div>\
+    </body>\
+\
+</html
+\f0\fs48 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 \
+\
+\cf0 \
+Plugins Code\
+\
+\
+Farmers Application Main Page  Code \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs25\fsmilli12800 \cf11 \cb10 \expnd0\expndtw0\kerning0
+<!DOCTYPE html>\cb1 \
+\cb10 <html>\cb1 \
+\cb10 \'a0 \'a0\'a0\cb1 \
+\cb10 \'a0 \'a0 <head>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <title>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 Agrotips\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </title>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <meta name="format-detection" content="telephone=no">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <meta name="apple-mobile-web-app-capable" content="yes">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <meta name="msapplication-tap-highlight" content="no">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <!-- Enable all requests, inline styles, and eval() -->\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <meta http-equiv="Content-Security-Policy" content="default-src * gap://ready data:; style-src 'self' 'unsafe-inline' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <link href="files/resources/lib/theme/jqm/jqm.css" rel="stylesheet" />\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <link href="files/resources/lib/theme/flat-ui/flat-ui.css" rel="stylesheet" />\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <link href="files/resources/lib/jquerymobile/1.4.4/jquery.mobile.structure-1.4.4.css"\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 rel="stylesheet" />\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <link type="text/css" rel="stylesheet" href="files/views/assets/css/CSS1.css" />\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/underscore/underscore.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/store/json2.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/jquery/jquery-2.1.1.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/jquery/jquery-ajaxTransport.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 $(document).bind("mobileinit", function()\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \{\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 if (navigator.userAgent.toLowerCase().indexOf("android") != -1)\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \{\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 $.mobile.defaultPageTransition = 'none';\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 $.mobile.defaultDialogTransition = 'none';\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \}\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 else if (navigator.userAgent.toLowerCase().indexOf("msie") != -1)\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \{\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 $.mobile.allowCrossDomainPages = true;\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 $.support.cors = true;\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \}\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 else if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g))\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \{\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 $.mobile.hashListeningEnabled = false;\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \}\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \});\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/jquerymobile/1.4.4/jquery.mobile-1.4.4.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/js/mobilebase.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/event/customEventHandler.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/sha1.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/oauth.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/contexts.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/jquery.xml2json.min.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/q/q.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/EventEmitter.js/EventEmitter.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/tv4/tv4.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/localforage/dist/localforage.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/localforage/plugins/localforage-setitems/localforage-setitems.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/localforage/plugins/localforage-find/localforage-find.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/crypto-js-md5/crypto-js-md5.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/moment/moment.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/underscore-query/underscore-query.min.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/offline/offline.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/ms_sdk_bundle/client-sdk.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/appery.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/component-manager.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/mapping-impl.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/entity-api.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/login.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/base/storage-api.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/get_target_platform.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/resources/lib/cordova.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <link href="files/resources/css/mobilebase.css" rel="stylesheet" type="text/css"\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 />\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/views/assets/js/services/model.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="files/views/assets/js/services/service.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 </head>\cb1 \
+\cb10 \'a0 \'a0\'a0\cb1 \
+\cb10 \'a0 \'a0 <body>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <script language="JavaScript" type="text/javascript">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0\'a0\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 <div data-role="page" style="min-height:480px;" dsid="Agrotips" id="Agrotips" class="type-interior"\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 data-theme="a">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <!-- mobileheader -->\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <div data-role="header" data-position="fixed" data-add-back-btn="false" data-back-btn-text="Back"\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 data-theme="a" name="mobileheader" id="Agrotips_mobileheader" class="Agrotips_mobileheader">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <h1 dsid="mobileheader">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 Caption\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 </h1>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 </div>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <!-- mobilecontainer -->\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <div data-role="content" id="Agrotips_mobilecontainer" name="mobilecontainer" class="Agrotips_mobilecontainer ui-content"\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 dsid="mobilecontainer" data-theme="a">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <link href="Agrotips.css" rel="stylesheet" type="text/css" />\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <script type="text/javascript" src="Agrotips.js">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 </script>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 </div>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <!-- mobilefooter -->\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 <div data-role="footer" data-position="fixed" class="Agrotips_mobilefooter" name="mobilefooter"\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 dsid="mobilefooter" id="Agrotips_mobilefooter" data-theme="a">\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 </div>\cb1 \
+\cb10 \'a0 \'a0 \'a0 \'a0 </div>\cb1 \
+\cb10 \'a0 \'a0 </body>\cb1 \
+\
+\cb10 </html>
+\f0\fs48 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+
+\fs24 \
+\
+\
+\
+\
+\
+\
+\
+}
